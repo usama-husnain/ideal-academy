@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionModelController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::get('/test/print/{id}', [TestController::class, 'print'])->name('test.pri
 Route::resource('test', TestController::class);
 Route::get('/notes/print/{id}', [NotesController::class, 'print'])->name('notes.print');
 Route::resource('notes', NotesController::class);
+Route::resource('students', StudentController::class);
 Route::get('/fee', function () {
     return view('admin.fee.index');
 });

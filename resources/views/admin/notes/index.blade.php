@@ -24,8 +24,14 @@
                         <td>{{$nts->title}}</td>
                         <td>{{$nts->chapter}}</td>
                         <td>{{$nts->book."-".$nts->class}}</td>
-                        <td>
-                            <a href="{{route('notes.print',$nts->id)}}" class="btn btn-success" title="print"><span class="fa fa-print"></span></a>
+                        <td class="d-flex">
+                            <a href="{{route('notes.print',$nts->id)}}" class="btn btn-success mx-1" title="print"><span class="fa fa-print"></span></a>
+                            <a href="{{route('notes.show',$nts->id)}}" class="btn btn-info mx-1" title="print"><span class="fa fa-eye"></span></a>
+                            <form method="post"  action="{{route('notes.destroy',$nts->id)}}">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" title="Delete Notes"><span class="fa fa-trash"></span></button>
+                            </form>
                         </td>
                     </tr>
                     @empty

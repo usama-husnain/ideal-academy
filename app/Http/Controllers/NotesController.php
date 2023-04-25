@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notes;
+use App\Models\Note;
 use App\Models\QuestionModel;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $notes = Notes::all();
+        $notes = Note::all();
 
         return view('admin.notes.index', compact('notes'));
     }
@@ -39,7 +39,7 @@ class NotesController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $notes = Notes::create($data);
+        $notes = Note::create($data);
 
         return redirect()->route('notes.index');
     }
@@ -47,7 +47,7 @@ class NotesController extends Controller
 
     public function print($id)
     {
-        $data = Notes::find($id);
+        $data = Note::find($id);
         $questions=QuestionModel::where("chapter",$data->chapter)
         ->where("book",$data->book)
         ->where("class",$data->class)
@@ -64,9 +64,9 @@ class NotesController extends Controller
      * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function show(Notes $notes)
+    public function show(Note $note)
     {
-        //
+        dd($note);
     }
 
     /**
@@ -75,7 +75,7 @@ class NotesController extends Controller
      * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Notes $notes)
+    public function edit(Note $note)
     {
         //
     }
@@ -87,7 +87,7 @@ class NotesController extends Controller
      * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Notes $notes)
+    public function update(Request $request, Note $note)
     {
         //
     }
@@ -98,8 +98,11 @@ class NotesController extends Controller
      * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notes $notes)
+    public function destroy(Note $note)
     {
-        //
+
+        //dd($note);
+        $note->delete();
+        return redirect()->route('notes.index');
     }
 }

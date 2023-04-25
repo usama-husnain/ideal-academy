@@ -84,6 +84,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                   <a class="nav-link text-dark" href="{{route("students.index")}}">
+                                        <i class="fa fa-users"></i> Student
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                    <a class="nav-link text-dark" href="{{route("question.index")}}">
                                         <i class="fa fa-edit"></i> Question
                                     </a>
