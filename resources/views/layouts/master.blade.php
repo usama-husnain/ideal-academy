@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm printtohide">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -106,6 +106,16 @@
                                 <li class="nav-item">
                                    <a class="nav-link text-dark" href="/fee">
                                         <i class="fa fa-money"></i> Fee Structure
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link text-dark" href="/fee/collection">
+                                        <i class="fa fa-money"></i> Fee Collection
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link text-dark" href="/setting">
+                                        <i class="fa fa-cog"></i> Settings
                                     </a>
                                 </li>
 

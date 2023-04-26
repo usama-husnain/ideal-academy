@@ -18,7 +18,7 @@
                 <img src="" />
             </div>
             <div class="col-4">
-                <h6 class="mb-0 fw-bold text-end">Session (2022-23)</h6>
+                <h6 class="mb-0 fw-bold text-end">Session ({{env('ANNUAL_SESSION')}})</h6>
                 <h6 class="mb-0 fw-bold text-end text-capitalize">{{$data["type"]." Questions"}}</h6>
 
             </div>

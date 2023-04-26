@@ -12,7 +12,7 @@
 
                 <h2 class=" fw-bolder text-center ">IDEAL ACADEMY</h2>
                 <h3 class="mb-1 fw-bold text-center">Fee Structure</h3>
-                <h5 class="mb-0 fw-bold text-center border border-dark rounded m-auto p-2  w-50" >For the Academic Session 2023-24 </h5>
+                <h5 class="mb-0 fw-bold text-center border border-dark rounded m-auto p-2  w-50" >For the Academic Session {{env('ANNUAL_SESSION')}} </h5>
         </div>
 
         <hr>
@@ -44,7 +44,7 @@
             <tbody>
                 <tr>
                     <th>Tuition Fee (Monthly)</th>
-                    <td>{{env('ONE_FIVE_FEE')}}/-</td>
+                    <td><?php putenv("ONE_FIVE_FEE=100")  ?> {{env('ONE_FIVE_FEE')}}/-</td>
                 </tr>
             </tbody>
         </table>

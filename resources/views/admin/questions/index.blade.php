@@ -12,7 +12,7 @@
                     <td>Sr #</td>
                     <td>Question</td>
                     <td>Chapter</td>
-                    <td>Answer</td>
+                    <td>Type</td>
                     <td>Book</td>
                     <td>Action</td>
                 </tr>
@@ -24,15 +24,17 @@
                         <td>{{$q->id}}</td>
                         <td>{{$q->title}}</td>
                         <td>{{$q->chapter}}</td>
-                        <td>{{$q->answer}}</td>
+                        <td>{{$q->type}}</td>
                         <td>{{$q->book}}-{{$q->class}}</td>
-                        <td>
-                            <a class="btn btn-primary" href="{{route('question.edit',$q->id)}}">
+                        <td class="d-md-flex">
+                            <a class="btn btn-primary mx-md-1" href="{{route('question.edit',$q->id)}}">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a class="btn btn-danger" href="{{route('question.destroy',$q->id)}}">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                            <form method="post"  action="{{route('question.destroy',$q->id)}}">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" title="Delete Question"><span class="fa fa-trash"></span></button>
+                            </form>
                         </td>
                     </tr>
 

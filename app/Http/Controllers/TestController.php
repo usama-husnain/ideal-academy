@@ -132,8 +132,11 @@ class TestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Test $test)
     {
-        //
+        // Test::find($test)->
+        $test->questions()->detach();
+        $test->delete();
+        return redirect()->route('test.index');
     }
 }

@@ -62,7 +62,8 @@ class QuestionModelController extends Controller
      */
     public function edit(QuestionModel $questionModel)
     {
-        //
+        $question = $questionModel;
+        return view('admin.questions.edit', compact('question'));
     }
 
     /**
@@ -74,7 +75,9 @@ class QuestionModelController extends Controller
      */
     public function update(Request $request, QuestionModel $questionModel)
     {
-        //
+        // dd($questionModel);
+        $questionModel->update($request->all());
+        return redirect()->route('question.index');
     }
 
     /**
@@ -85,6 +88,10 @@ class QuestionModelController extends Controller
      */
     public function destroy(QuestionModel $questionModel)
     {
-        //
+        // dd($questionModel);
+        $questionModel->tests()->detach();
+        $questionModel->delete();
+
+        return redirect()->route('question.index');
     }
 }

@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+
+class Fee extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'fname', 'lname', 'school', 'class','roll', 'phone','fee'
+        'tution_fee', 'paid_fee', 'status', 'remarks'
     ];
 
-    public function fee()
+
+    public function student()
     {
-        return $this->hasOne('App\Models\Fee');
+        return $this->belongsTo('App\Models\Student');
     }
 }

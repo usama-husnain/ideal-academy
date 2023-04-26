@@ -26,9 +26,14 @@
                         <td>{{count($tst->questions)}}</td>
                         <td>{{$tst->chapter}}</td>
                         <td>{{$tst->book."-".$tst->class}}</td>
-                        <td>
+                        <td class="d-flex">
                             <a href="{{route('test.print',$tst->id)}}" class="btn btn-success" title="print"><span class="fa fa-print"></span></a>
-                            <a href="{{route('test.get_finalize',$tst->id)}}" class="btn btn-primary bg-primary-50 {{ (count($tst->questions)!=0) ? 'disabled' : '' }}" title="Finalize"><span class="fa fa-arrow-right"></span></a>
+                            <a href="{{route('test.get_finalize',$tst->id)}}" class="mx-1 btn btn-primary bg-primary-50 {{ (count($tst->questions)!=0) ? 'disabled' : '' }}" title="Finalize"><span class="fa fa-arrow-right"></span></a>
+                            <form method="post"  action="{{route('test.destroy',$tst->id)}}">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" title="Delete Test"><span class="fa fa-trash"></span></button>
+                            </form>
                         </td>
                     </tr>
                     @empty

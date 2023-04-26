@@ -18,7 +18,7 @@
                 <img src="" />
             </div>
             <div class="col-4">
-                <h6 class="mb-0 fw-bold text-end">Session (2022-23)</h6>
+                <h6 class="mb-0 fw-bold text-end">Session ({{env('ANNUAL_SESSION')}})</h6>
                 <h6 class="mb-0 fw-bold text-end">{{$data["category"]." Test"}}</h6>
                 <h6 class="mb-0 fw-bold text-end">Total Marks: <span class="marks"></span> </h6>
             </div>
@@ -31,6 +31,7 @@
             $SHORT_PER_SECTION= env('SHORT_PER_SECTION');
             $LONG_PER_SECTION= env('LONG_PER_SECTION');
             $CHOICE= env('CHOICE');
+            $LONG_CHOICE= env('LONG_CHOICE');
             $shortCount = 0;
             $longCount = 0;
             $ques_order = 0;
@@ -79,7 +80,7 @@
 
         <div class="Long">
             <h5 class="fw-bold my-3 text-center">Section-II</h5>
-            <p class="fw-bold">Note: Explain the following question:</p>
+            <p class="fw-bold">Note: Explain the following question: (Any {{$LONG_CHOICE}})</p>
             @for($i = 1; $i <= $longSections; $i++)
                 @php   $count = 0;  @endphp
                 <p class="fw-bold mb-0">Q.No.{{$i+$ques_order}}:</p>
