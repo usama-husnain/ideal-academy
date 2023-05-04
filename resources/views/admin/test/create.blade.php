@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-4">
                 <h6 class="mb-0 text-capitalize fw-bold">{{$data["book"]}}{{$data["class"]}}: {{$data["test"]}}</h6>
-                <h6 class="mb-0 fw-bold">Chapter: {{$data["chapter"]}}</h5>
+                <h6 class="mb-0 fw-bold">Chapter: {{$data["chapter"]}}</h6>
                 {{-- <h6 class="mb-0 fw-bold">Time Allowed: {{ 3*intval($data["short_count"]) + 5*intval($data["long_count"]) }} </h6> --}}
             </div>
             <div class="col-4">

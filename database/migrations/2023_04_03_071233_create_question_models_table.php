@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('question_models', function (Blueprint $table) {
             $table->id();
             $table->string("title")->nullable();
-            $table->string("answer")->nullable();
+            $table->text("answer")->nullable();
             $table->string("class");
             $table->string("book");
             $table->bigInteger("chapter")->nullable();

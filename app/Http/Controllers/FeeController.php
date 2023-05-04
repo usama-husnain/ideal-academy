@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fee;
 use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FeeController extends Controller
@@ -21,7 +22,15 @@ class FeeController extends Controller
 
     public function collection()
     {
-        return view('admin.fee.collect');
+        $id = array();
+
+        $fees = Fee::whereMonth('created_at', Carbon::now()->month)->orderBy('id','DESC')->get();
+        $students = Student::whereDoesntHave('fee', function ($query){
+            $query->whereMonth('created_at', Carbon::now()->month)
+                  ->whereYear('created_at', Carbon::now()->year);
+        })->get();
+
+        return view('admin.fee.collect', compact('fees','students'));
     }
 
     /**
@@ -31,7 +40,10 @@ class FeeController extends Controller
      */
     public function create()
     {
-        $students = Student::all();
+        $students = Student::whereDoesntHave('fee', function ($query){
+            $query->whereMonth('created_at', Carbon::now()->month)
+                  ->whereYear('created_at', Carbon::now()->year);
+        })->get();
         return view('admin.fee.create',compact('students'));
     }
 
@@ -43,7 +55,21 @@ class FeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = Student::find($request->get('student_id'));
+     //   dd($student->fee);
+        $status = "Unpaid";
+        if($student->fee-$request->get('paid_fee')==0)
+        {
+            $status = "Paid";
+        }
+
+        if($student->fee-$request->get('paid_fee')!=0)
+        {
+            $status = "Partial-paid";
+        }
+        $request["status"] = $status;
+        $fee = Fee::create($request->all());
+        return redirect('/fee/collection');
     }
 
     /**
@@ -65,7 +91,8 @@ class FeeController extends Controller
      */
     public function edit(Fee $fee)
     {
-        //
+        $student = $fee;
+        return view('admin.fee.edit',compact('fee'));
     }
 
     /**
@@ -77,8 +104,33 @@ class FeeController extends Controller
      */
     public function update(Request $request, Fee $fee)
     {
-        //
+        $student = $fee->student;
+    //    dd($student->fee);
+        $status = "Unpaid";
+        if($student->fee-$request->get('paid_fee')==0)
+        {
+            $status = "Paid";
+        }
+
+        if($student->fee-$request->get('paid_fee')!=0)
+        {
+            $status = "Partial-paid";
+        }
+        $request["status"] = $status;
+        $fee->update($request->all());
+        return redirect('/fee/collection');
+
     }
+
+
+    public function print($id)
+    {
+        $fee = Fee::find($id);
+
+        return view('admin.fee.feeSlip', compact('fee'));
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

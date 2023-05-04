@@ -35,5 +35,6 @@ Route::get('/notes/print/{id}', [NotesController::class, 'print'])->name('notes.
 Route::resource('notes', NotesController::class);
 Route::resource('setting', SettingController::class);
 Route::resource('students', StudentController::class);
+Route::get('/fee/print/{id}', [FeeController::class, 'print'])->name('fee.print');
 Route::get('/fee/collection',[FeeController::class, 'collection'])->name('fee.collection');
 Route::resource('fee',FeeController::class);

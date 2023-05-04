@@ -38,7 +38,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td rowspan="5">No recod found!</td>
+                        <td colspan="6" class="text-center">No recod found!</td>
                     </tr>
                 @endforelse
             </tbody>

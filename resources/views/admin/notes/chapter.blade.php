@@ -1,6 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
+
+<style>
+   td {
+        border:1px solid black !important;
+        border-width: 1px !important;
+        padding: 5px;
+    }
+
+</style>
 <div id="new"></div>
 <div class="card printtohide">
     <div class="card-body">
@@ -24,11 +33,11 @@
             </div>
         </div>
         <hr>
-
         <ol>
             @foreach($questions as $q)
-                <li class="fw-bold">{{$q["title"]}}</li>
-                <p>{{$q["answer"] ? "Ans: ".$q["answer"] : "Answer Not Found"}}</p>
+                <li class="fw-bold mt-2">{{$q["title"]}}</li>
+                <?php  echo $q["answer"] ? "<p class='mb-0 fw-bold'>Ans:</p>".$q["answer"]: "Answer Not Found"; ?>
+
             @endforeach
         </ol>
 

@@ -4,31 +4,26 @@
 
 <div class="card">
     <div class="card-body">
-        <h3>Create Notes</h3>
+        <h3>Create Fee</h3>
         <hr />
         <form method="POST" action="{{ route('fee.store') }}">
             @csrf
 
 
             <label>Student:</label>
-            <select name="book" id="" class="form-control" required>
-                <option value="" selected disabled>--- Select Students ---</option>
+            <select name="student_id" id="" class="form-control" required>
+                <option value="" selected disabled>--- Select Student (Name | Class | Roll#) ---</option>
                 @foreach($students as $student)
-                    <option value="{{$student->id}}"  >{{$student->fname.' '.$student->lname}}</option>
+                    <option value="{{$student->id}}"  >{{$student->fname.' '.$student->lname.' | '.$student->class.' | '.$student->roll}}</option>
                 @endforeach
             </select>
 
 
-            <label>Chapter #:</label>
-            <input type="number" min="1" name="chapter"  class="form-control">
+            <label>Fee Received :</label>
+            <input type="number" min="1" name="paid_fee"  class="form-control">
 
-            <label>Type:</label>
-            <select name="type" id="" class="form-control" required>
-                <option value="" selected disabled>--- Select Type ---</option>
-                <option value="short">Short</option>
-                <option value="long">Long</option>
-                <option value="both">Both</option>
-            </select>
+            <label>Remarks:</label>
+            <textarea id="mytextarea" name="remarks" class="form-control" placeholder="Enter remarks"></textarea>
 
 
             <button type="submit" name="submit" class="btn btn-primary my-3">Save</button>
