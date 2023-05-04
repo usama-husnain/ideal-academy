@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tr>
-                    <th>Student Name</th>
+                    <th>Student Name:</th>
                     <td>
                         {{$fee->student->fname.' '.$fee->student->lname}}
                     </td>
